@@ -1,24 +1,26 @@
 
+let isMouseDown = false;
 
-function createGrid(){
+
+function createGrid(gridSize){
 
     const container = document.querySelector(".container");
 
-    for(let i = 0; i < 16; i++){
+    container.innerHTML="";
+
+
+    for(let i = 0; i < gridSize; i++){
         let row = document.createElement("div");
         row.className="row";
-        row.style.margin = 5;
-        row.style.padding = 5;
 
-        let rowContent = document.createTextNode(row.className);
-        row.appendChild(rowContent);
-
-        for(let j = 0; j<16; j++){
+        for(let j = 0; j<gridSize; j++){
             let column = document.createElement("div");
             column.className="column";
-
-            let columnContent = document.createTextNode(column.className);
-            column.appendChild(columnContent);
+            column.addEventListener("mouseover", () => {
+                if (isMouseDown) {
+                    column.classList.add("hovored");
+                }
+            });
 
             row.appendChild(column);
         }
@@ -29,4 +31,18 @@ function createGrid(){
 
 }
 
-createGrid();
+document.body.addEventListener("mousedown", () => {
+  isMouseDown = true;
+});
+document.body.addEventListener("mouseup", () => {
+  isMouseDown = false;
+});
+
+
+
+
+function openPrompt(){
+    let gridNumber = Number(prompt("Enter a number for the Grid Size"));
+    createGrid(gridNumber);
+    
+}
