@@ -1,0 +1,15 @@
+
+.container{
+    display: flex;
+}
+
+.row{
+    margin: 5px;
+    padding: 5px;    
+}
+
+
+.column {
+    margin: 5px;
+    padding: 5px;
+} 
